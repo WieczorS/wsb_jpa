@@ -15,8 +15,8 @@ INSERT INTO VISIT (id, description, time, doctor_id, patient_id) VALUES (1, 'Wiz
 INSERT INTO VISIT (id, description, time, doctor_id, patient_id) VALUES (2, 'Wizyta kontrolna', '2023-02-01T11:00:00', 2, 2);
 
 -- Insert data into MEDICAL_TREATMENT table
-INSERT INTO MEDICAL_TREATMENT (id, treatment_name, doctor_id) VALUES (1, 'Fizjoterapia', 1);
-INSERT INTO MEDICAL_TREATMENT (id, treatment_name, doctor_id) VALUES (2, 'Chemoterapia', 2);
+INSERT INTO MEDICAL_TREATMENT (id, description, doctor_id) VALUES (1, 'Fizjoterapia', 1);
+INSERT INTO MEDICAL_TREATMENT (id, description, doctor_id) VALUES (2, 'Chemoterapia', 2);
 
 -- Insert data into doctor_address join table
 INSERT INTO doctor_address (doctor_id, address_id) VALUES (1, 1);
