@@ -22,12 +22,12 @@ public class PatientService {
         return patientRepository.findAll();
     }
 
-    public Optional<PatientEntity> findById(Long id) {
+    public PatientEntity findById(Long id) {
         return patientRepository.findById(id);
     }
 
-    public PatientEntity save(PatientEntity patient) {
-        return patientRepository.save(patient);
+    public void save(PatientEntity patient) {
+        patientRepository.save(patient);
     }
 
     public void deleteById(Long id) {
