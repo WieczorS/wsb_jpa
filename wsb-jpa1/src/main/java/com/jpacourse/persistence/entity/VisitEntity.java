@@ -1,8 +1,7 @@
 package com.jpacourse.persistence.entity;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "VISIT")
@@ -12,18 +11,20 @@ public class VisitEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(length = 255)
 	private String description;
 
+
 	@Column(nullable = false)
-	private LocalDateTime time;
+	private LocalDateTime visitDate;
 
 	@ManyToOne
-	@JoinColumn(name = "doctor_id")
-	private DoctorEntity doctor;
-
-	@ManyToOne
-	@JoinColumn(name = "patient_id")
+	@JoinColumn(name = "patient_id", nullable = false)
 	private PatientEntity patient;
+
+	@ManyToOne
+	@JoinColumn(name = "doctor_id", nullable = false)
+	private DoctorEntity doctor;
 
 	public Long getId() {
 		return id;
@@ -33,6 +34,30 @@ public class VisitEntity {
 		this.id = id;
 	}
 
+	public LocalDateTime getVisitDate() {
+		return visitDate;
+	}
+
+	public void setVisitDate(LocalDateTime visitDate) {
+		this.visitDate = visitDate;
+	}
+
+	public PatientEntity getPatient() {
+		return patient;
+	}
+
+	public void setPatient(PatientEntity patient) {
+		this.patient = patient;
+	}
+
+	public DoctorEntity getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(DoctorEntity doctor) {
+		this.doctor = doctor;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -40,13 +65,4 @@ public class VisitEntity {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public LocalDateTime getTime() {
-		return time;
-	}
-
-	public void setTime(LocalDateTime time) {
-		this.time = time;
-	}
-
 }

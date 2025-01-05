@@ -1,7 +1,6 @@
 package com.jpacourse.persistence.entity;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -12,25 +11,17 @@ public class AddressEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(nullable = false)
+	private String street;
 
-	@OneToMany(mappedBy = "patient")
-	private List<VisitEntity> visits;
-
-	@ManyToMany
-	@JoinTable(
-			name = "patient_address",
-			joinColumns = @JoinColumn(name = "patient_id"),
-			inverseJoinColumns = @JoinColumn(name = "address_id")
-	)
-	private Set<AddressEntity> addresses;
-
+	@Column(nullable = false)
 	private String city;
 
-	private String addressLine1;
-
-	private String addressLine2;
-
+	@Column(nullable = false)
 	private String postalCode;
+
+	@ManyToMany(mappedBy = "addresses")
+	private Set<PatientEntity> patients;
 
 	public Long getId() {
 		return id;
@@ -38,6 +29,14 @@ public class AddressEntity {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
 	}
 
 	public String getCity() {
@@ -48,22 +47,6 @@ public class AddressEntity {
 		this.city = city;
 	}
 
-	public String getAddressLine1() {
-		return addressLine1;
-	}
-
-	public void setAddressLine1(String addressLine1) {
-		this.addressLine1 = addressLine1;
-	}
-
-	public String getAddressLine2() {
-		return addressLine2;
-	}
-
-	public void setAddressLine2(String addressLine2) {
-		this.addressLine2 = addressLine2;
-	}
-
 	public String getPostalCode() {
 		return postalCode;
 	}
@@ -72,4 +55,11 @@ public class AddressEntity {
 		this.postalCode = postalCode;
 	}
 
+	public Set<PatientEntity> getPatients() {
+		return patients;
+	}
+
+	public void setPatients(Set<PatientEntity> patients) {
+		this.patients = patients;
+	}
 }

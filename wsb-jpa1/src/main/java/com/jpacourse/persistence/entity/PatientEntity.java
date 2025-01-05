@@ -1,6 +1,7 @@
 package com.jpacourse.persistence.entity;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -31,7 +32,7 @@ public class PatientEntity {
 	@Column(nullable = false)
 	private LocalDate dateOfBirth;
 
-	@OneToMany(mappedBy = "patient")
+	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<VisitEntity> visits;
 
 	@ManyToMany
@@ -40,7 +41,8 @@ public class PatientEntity {
 			joinColumns = @JoinColumn(name = "patient_id"),
 			inverseJoinColumns = @JoinColumn(name = "address_id")
 	)
-	private Set<AddressEntity> addresses;
+	private Set<AddressEntity> addresses = new HashSet<>();
+
 
 	public Long getId() {
 		return id;
@@ -98,4 +100,19 @@ public class PatientEntity {
 		this.dateOfBirth = dateOfBirth;
 	}
 
+	public List<VisitEntity> getVisits() { // Getter dla 'visits'
+		return visits;
+	}
+
+	public void setVisits(List<VisitEntity> visits) { // Setter dla 'visits'
+		this.visits = visits;
+	}
+
+	public Set<AddressEntity> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(Set<AddressEntity> addresses) {
+		this.addresses = addresses;
+	}
 }

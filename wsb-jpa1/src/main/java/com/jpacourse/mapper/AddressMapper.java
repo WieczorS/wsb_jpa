@@ -14,8 +14,7 @@ public final class AddressMapper
         }
         final AddressTO addressTO = new AddressTO();
         addressTO.setId(addressEntity.getId());
-        addressTO.setAddressLine1(addressEntity.getAddressLine1());
-        addressTO.setAddressLine2(addressEntity.getAddressLine2());
+        addressTO.setAddressLine1(addressEntity.getStreet());
         addressTO.setCity(addressEntity.getCity());
         addressTO.setPostalCode(addressEntity.getPostalCode());
         return addressTO;
@@ -29,8 +28,7 @@ public final class AddressMapper
         }
         AddressEntity addressEntity = new AddressEntity();
         addressEntity.setId(addressTO.getId());
-        addressEntity.setAddressLine1(addressTO.getAddressLine1());
-        addressEntity.setAddressLine2(addressTO.getAddressLine2());
+        addressTO.setAddressLine1(addressEntity.getStreet());
         addressEntity.setCity(addressTO.getCity());
         addressEntity.setPostalCode(addressTO.getPostalCode());
         return addressEntity;
