@@ -12,17 +12,21 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PatientService {
+
+    private final PatientRepository patientRepo;
 
     @Autowired
     private PatientDao patientDao;
 
     @Autowired
     private PatientMapper patientMapper;
+
+    public PatientService() {
+        patientRepo = new PatientRepository();
+    }
 
     @Transactional
     public void deletePatient(Long patientId) {
