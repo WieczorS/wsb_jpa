@@ -1,0 +1,55 @@
+package com.jpacourse.service;
+
+import com.jpacourse.model.Patient;
+import com.jpacourse.model.Visit;
+import com.jpacourse.repository.PatientRepository;
+import com.jpacourse.repository.VisitRepository;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+@DataJpaTest
+@Transactional
+public class VisitServiceTest {
+
+    @Autowired
+    private VisitRepository visitRepository;
+
+    @Autowired
+    private PatientRepository patientRepository;
+
+    @Autowired
+    private VisitService visitService;
+
+    @BeforeEach
+    public void setUp() {
+        Patient patient = new Patient();
+        patient.setId(1L);
+        patient.setLastName("Kowalski");
+        patient.setFirstName("Jan");
+        patient.setBirthDate(LocalDate.of(1980, 1, 1));
+        patientRepository.save(patient);
+
+        Visit visit = new Visit();
+        visit.setId(1L);
+        visit.setPatientId(1L);
+        visit.setVisitDate(LocalDate.of(2023, 1, 1));
+        visitRepository.save(visit);
+    }
+
+    @Test
+    public void testFindVisitsByPatientId() {
+        List<Visit> visits = visitService.findVisitsByPatientId(1L);
+        assertNotNull(visits);
+        assertEquals(1, visits.size());
+        assertEquals(1L, visits.get(0).getPatientId());
+    }
+}

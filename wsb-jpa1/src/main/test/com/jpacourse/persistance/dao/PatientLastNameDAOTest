@@ -1,0 +1,25 @@
+package com.jpacourse.persistance;
+
+import com.jpacourse.model.Patient;
+import com.jpacourse.repository.PatientRepository;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@DataJpaTest
+public class PatientDaoTest {
+
+    @Autowired
+    private PatientRepository patientRepository;
+
+    @Test
+    public void testFindPatientsByLastName() {
+        List<Patient> patients = patientRepository.findByLastName("Kowalski");
+        assertEquals(1, patients.size());
+        assertEquals("Kowalski", patients.get(0).getLastName());
+    }
+}
