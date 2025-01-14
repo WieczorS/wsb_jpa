@@ -1,4 +1,4 @@
-package test.com.jpacourse.persistance.dao.dao; 
+package test.com.jpacourse.persistance.dao.dao;
 
 import com.jpacourse.model.Patient;
 import com.jpacourse.repository.PatientRepository;
@@ -17,8 +17,9 @@ public class PatientDaoTest {
     private PatientRepository patientRepository;
 
     @Test
-    public void testFindPatientsByCustomField() {
-        List<Patient> patients = patientRepository.findByCustomFieldContaining("example");
-        assertEquals(3, patients.size());
+    public void testFindPatientsByEarliestVisit() {
+        List<Patient> patients = patientRepository.findPatientsByEarliestVisit();
+        assertEquals(2, patients.size());
+        assertEquals("Wiśniewska", patients.get(0).getLastName());
     }
 }

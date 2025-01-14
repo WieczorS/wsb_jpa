@@ -18,7 +18,7 @@ public class PatientDaoTest {
     @Test
     public void testFindPatientsWithMoreThanXVisits() {
         int X = 2;
-        List<Patient> patients = patientRepository.findPatientsWithMoreThanXVisits(X);
+        List<Patient> patients = patientRepository.findPatientsWithMoreThanXVisits(2);
         assertEquals(1, patients.size());
         assertEquals("Wiśniewski", patients.get(0).getLastName());
     }
