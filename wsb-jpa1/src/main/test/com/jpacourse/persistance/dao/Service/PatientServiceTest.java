@@ -1,4 +1,4 @@
-package com.jpacourse.persistance.dao;
+package test.com.jpacourse.persistance.dao.service; 
 
 @SpringBootTest
 @Transactional

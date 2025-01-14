@@ -1,5 +1,4 @@
-package com.jpacourse.persistance;
-
+package test.com.jpacourse.persistance.dao.dao; 
 import com.jpacourse.model.Patient;
 import com.jpacourse.repository.PatientRepository;
 import org.junit.jupiter.api.Test;

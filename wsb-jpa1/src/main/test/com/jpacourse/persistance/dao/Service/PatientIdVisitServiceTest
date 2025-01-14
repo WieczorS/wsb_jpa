@@ -1,4 +1,4 @@
-package com.jpacourse.service;
+package test.com.jpacourse.persistance.dao.service; 
 
 import com.jpacourse.model.Patient;
 import com.jpacourse.model.Visit;
