@@ -13,6 +13,7 @@ INSERT INTO PATIENT (id, first_name, last_name, telephone_number, email, patient
 -- Insert data into VISIT table
 INSERT INTO VISIT (id, description, visit_date, doctor_id, patient_id) VALUES (1, 'Wizyta kontrolna', '2023-01-01T10:00:00', 1, 1);
 INSERT INTO VISIT (id, description, visit_date, doctor_id, patient_id) VALUES (2, 'Wizyta kontrolna', '2023-02-01T11:00:00', 2, 2);
+INSERT INTO VISIT (id, description, visit_date, doctor_id, patient_id) VALUES (3, 'Wizyta kontrolna', '2023-02-04T11:00:00', 2, 2);
 
 -- Insert data into MEDICAL_TREATMENT table
 INSERT INTO MEDICAL_TREATMENT (id, description, doctor_id) VALUES (1, 'Fizjoterapia', 1);
@@ -26,46 +27,3 @@ INSERT INTO doctor_address (doctor_id, address_id) VALUES (2, 2);
 INSERT INTO patient_address (patient_id, address_id) VALUES (1, 1);
 INSERT INTO patient_address (patient_id, address_id) VALUES (2, 2);
 
-
-CREATE TABLE patients (
-    id INT PRIMARY KEY,
-    last_name VARCHAR(255),
-    first_name VARCHAR(255),
-    birth_date DATE,
-    custom_field VARCHAR(255) 
-);
-
-
-CREATE TABLE visits (
-    id INT PRIMARY KEY,
-    patient_id INT,
-    visit_date DATE,
-    FOREIGN KEY (patient_id) REFERENCES patients(id)
-);
-
-
-INSERT INTO patients (id, last_name, first_name, birth_date, custom_field) VALUES
-(1, 'Kowalski', 'Jan', '1980-01-01', 'example1'),
-(2, 'Nowak', 'Anna', '1990-02-02', 'example2'),
-(3, 'Wiśniewski', 'Piotr', '1975-03-03', 'example3');
-
-
-INSERT INTO visits (id, patient_id, visit_date) VALUES
-(1, 1, '2023-01-01'),
-(2, 1, '2023-02-01'),
-(3, 2, '2023-01-15'),
-(4, 3, '2023-03-01'),
-(5, 3, '2023-04-01'),
-(6, 3, '2023-05-01');
-
-SELECT * FROM patients WHERE last_name = 'Kowalski';
-
-SELECT * FROM visits WHERE patient_id = 1;
-
-SELECT p.* 
-FROM patients p
-JOIN visits v ON p.id = v.patient_id
-GROUP BY p.id
-HAVING COUNT(v.id) > X;
-
-SELECT * FROM patients WHERE custom_field LIKE '%example%';
